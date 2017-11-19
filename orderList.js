@@ -53,9 +53,9 @@ function add (list, elem){
         return "Error. The element is not a number."
     }
     
-    aux = size(list);
-    
+    aux = size(list);   
     list[aux] = elem;
+    order(list);
     
     return aux+1;
 }
@@ -83,9 +83,16 @@ function toString (list){
 function indexOf(list, elem){
     var encontrado = false;
     var i = 0;
+    var mid;
     
     if (isNaN(elem)){
         return "Error. The element is not a number."
+    }
+    
+    mid = Math.trunc( (size(list)/2)-1 );
+    
+    if ( elem > list[mid] ){
+        i = mid;
     }
     
     while (!encontrado && i<size(list)){
@@ -94,24 +101,6 @@ function indexOf(list, elem){
             return i;
         }
         i++;
-    }
-    return -1;
-}
-
-function lastIndexOf(list, elem){
-    var encontrado = false;
-    var i = size(list);
-    
-    if (isNaN(elem)){
-        return "Error. The element is not a number."
-    }
-    
-    while (!encontrado && i>=0 ){
-        if ( list[i] == elem){
-            encontrado = true;
-            return i;
-        }
-        i--;
     }
     return -1;
 }
@@ -197,29 +186,21 @@ function removeElement(list, elem){
     }
 }
 
-function set(list, elem, index){
+function order(list){
     var aux;
     
-    if (isNaN(elem)){
-        return "Error. The element is not a number."
-    }
-    
-    if ( index < 0 || index > elementMax){
-        return "The index is out of the limits of the list";
-    }
-    
-    aux = list[index];
-    list[index] = elem
-    
-    return aux;
-}
- 
-
-function order(list){
+    for(var i=0; i<(list.length-1); i++){
+            for(var j=i+1; j < list.length; j++){
+                if( list[i] > list[j] ){
+                    aux = list[i];
+                    list[i] = list[j];
+                    list[j] = aux;
+                }
+            }
+      }
     
     return list;
 }
-
 
 function mostrar(list){
     for (var i=0; i<list.length; i++){
@@ -229,12 +210,19 @@ function mostrar(list){
 
 var list = create();
 
-console.log("Capacidad: "+capacity(list));
+console.log("Añadimos 4: "+add(list, 4));
+//console.log("Añadimos 3: "+add(list, 3));
+//console.log("Añadimos 8: "+add(list, 8));
+//console.log("Añadimos 1: "+add(list, 1));
+mostrar(list);
+console.log("Buscar 3: "+indexOf(list, 4));
+
+/* console.log("Capacidad: "+capacity(list));
 console.log("¿Lista vacia? "+isEmpty(list));
 console.log("¿Lista llena? "+isFull(list));
 console.log("Numero de elementos: "+size(list));
 console.log("Añadimos 1: "+add(list, 1));
-//console.log("Añadimos 2: "+addAt(list, 2, 0));
+console.log("Añadimos 2: "+addAt(list, 2, 0));
 console.log("Añadimos 2: "+add(list, 2));
 console.log("Añadimos 3: "+add(list, 3));
 console.log("Añadimos 4: "+add(list, 4));
@@ -242,22 +230,22 @@ console.log("Numero de elementos: "+size(list));
 console.log("Añadimos 5: "+add(list, 5));
 console.log("Cadena: "+toString(list));
 mostrar(list);
-//console.log(remove(list, 1));
+console.log(remove(list, 1));
 console.log(removeElement(list, 2));
-//console.log(remove(list, 0));
+console.log(remove(list, 0));
 mostrar(list);
-/*console.log("Buscar 6: "+indexOf(list, 3));
+console.log("Buscar 6: "+indexOf(list, 3));
 console.log("Buscar 6 por fnal: "+lastIndexOf(list, 2));
-//clear(list);
-//console.log("¿Lista vacia? "+isEmpty(list));
+clear(list);
+console.log("¿Lista vacia? "+isEmpty(list));
 console.log("Primer elem: "+firstElement(list));
 console.log("Ultimo elem: "+lastElement(list));
 console.log("Borramos 6: "+remove(list, 1));
 console.log("Cadena: "+toString(list));
-//console.log("Borramos 3: "+removeElement(list, 2));
-//console.log("Cadena: "+toString(list));
+console.log("Borramos 3: "+removeElement(list, 2));
+console.log("Cadena: "+toString(list));
 console.log("Cambiamos 3 por 6: "+set(list, 3, 0));
-console.log("Cadena: "+toString(list));*/
+console.log("Cadena: "+toString(list)); */
 
 
 
