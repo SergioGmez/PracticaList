@@ -1,0 +1,52 @@
+*{
+	margin: 0px;
+	padding: 0px;
+}
+
+form{
+	width: 60%;
+}
+
+#statusList{
+	margin: 0.5rem;
+	border: 1px solid orange;
+	width: 80%;
+	background-color: #3675B7;
+}
+
+#statusList label{
+	display: block;
+	width: 95%;
+	margin: 0.5rem;
+	font-size: 1.1rem;
+}
+
+.title{
+	font-size: 1.5rem;
+	font-weight: bold;
+}
+
+#elementFunc{
+	margin: 0.5rem;
+	border: 1px solid orange;
+	width: 80%;
+	background-color: #4A70A7;
+}
+
+#elementFunc label{
+	display: block;
+	width: 95%;
+	margin: 0.5rem;
+}
+
+#indexFunc{
+	margin: 0.5rem;
+	border: 1px solid orange;
+	width: 80%;
+	background-color: #4A70A7;
+}
+
+#indexFunc label{
+	display: block;
+	width: 95%;
+	margin: 0.5rem;}

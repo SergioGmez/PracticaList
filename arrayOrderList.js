@@ -88,7 +88,7 @@ function clear (list){
 function firstElement(list){
     
     if (isEmpty(list)){
-        return "Error. The stack is empty."
+        return "Error. The list is empty."
     }
     
     return list[0];
@@ -97,7 +97,7 @@ function firstElement(list){
 function lastElement(list){
     
     if (isEmpty(list)){
-        return "Error. The stack is empty."
+        return "Error. The list is empty."
     }
     
     return list[size(list)-1];
@@ -117,21 +117,27 @@ function remove (list, index){
 }
 
 function removeElement(list, elem){
+    var index;
     
     if (isNaN(elem)){
         return "Error. The element is not a number."
     }
     
     if (isEmpty(list)){
-        return "Error. The stack is empty."
+        return "Error. The list is empty."
+    }
+    index = list.indexOf(elem);
+    
+    if (index > -1){
+       return list.splice(index, 1); 
     }
     
-    return list.splice(list.indexOf(elem), 1);
+    return -1;
 }
 
 
 var list = create();
-
+/*
 console.log("¿Lista vacia? "+isEmpty(list));
 console.log("¿Lista llena? "+isFull(list));
 console.log("Numero de elementos: "+size(list));
@@ -154,3 +160,4 @@ console.log("Borramos el index 0. Elemento: "+remove(list, 0));
 console.log("Lista: "+toString(list));
 console.log("Borramos el elem 6. Elemento: "+removeElement(list, 6));
 console.log("Lista: "+toString(list));
+*/

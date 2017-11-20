@@ -1,11 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="UTF-8">
-	<title>Pagina de prueba</title>
-    <script src="arrayOrderList.js"></script>
+    <meta charset="UTF-8">
+    <title>Pagina de prueba</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="arrayOrderList.js"></script> 
 </head>
 <body>
-	
+    <form>
+        <div id="statusList">
+            <label class="title">Status List</label>
+            <label id="capacity">Capacity: </label>
+            <label id="status">Status List: </label>
+            <label id="list" >Elements: </label> 
+        </div>
+        <div id="elementFunc">
+            <label class="title">Element Functions</label>
+            <input type="text" id="textElement">
+            <input type="button" value="Add Element" onclick=elementsFunc(1)>
+            <input type="button" value="IndexOf" onclick="elementsFunc(2)">
+            <input type="button" value="Remove Element" onclick="elementsFunc(3)">
+        </div>
+        <div id="indexFunc">
+            <label class="title">Indexes Functions</label>
+            <input type="text">
+            <input type="button" value="Get" onclick="">
+            <input type="button" value="Remove Index" onclick="">
+        </div>
+    </form>
+    <script>
+        function statusList(){
+            var status;
+            
+            status = "The list has "+size(list)+" elements";
+            
+            if (isEmpty(list)){
+                status = "The list is empty";
+            }
+            
+            if (isFull(list)){
+                status = "The list is full";
+            }
+            
+            document.getElementById("capacity").innerHTML = "Capacity: "+capacity(list);
+            document.getElementById("status").innerHTML = status;
+            document.getElementById("list").innerHTML = "Elements: "+toString(list);
+        }
+        
+        function elementsFunc(type){
+            var element = document.getElementById("textElement").value;
+            
+            switch(type){
+                case 1:
+                    add(list, element);
+                    break;
+                case 2:
+                    indexOf(list, element);
+                    break;
+                case 3:
+                    removeElement(list, element);
+                    break;    
+            }
+            statusList();
+        }
+        
+        var list = create();
+        
+    </script>
 </body>
 </html>
