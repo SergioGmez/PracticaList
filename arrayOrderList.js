@@ -1,7 +1,5 @@
 "use strict";
 
-var elementMax = 4;
-
 function create(){
     var list = [];
     
@@ -19,7 +17,7 @@ function isEmpty(list){
 
 function isFull(list){   
     
-    if (!isNaN(list[elementMax-1])){
+    if (!isNaN(list[capacity()-1])){
         return true;
     }else{
         return false;
@@ -48,7 +46,7 @@ function add (list, elem){
 
 function get (list, index){
     
-    if ( index < 0 || index > elementMax){
+    if ( index < 0 || index > capacity()){
         return "The index is out of the limits of the list";
     }
     
@@ -76,8 +74,8 @@ function indexOf(list, elem){
     }
 }
 
-function capacity (list){
-    return elementMax;
+function capacity(){
+    return 4;
 }
 
 function clear (list){
@@ -136,28 +134,32 @@ function removeElement(list, elem){
 }
 
 
-var list = create();
-/*
-console.log("¿Lista vacia? "+isEmpty(list));
-console.log("¿Lista llena? "+isFull(list));
-console.log("Numero de elementos: "+size(list));
-console.log("Añadimos un 5. Tamaño: "+add(list, 5));
-console.log("Añadimos un 8. Tamaño: "+add(list, 8));
-console.log("Lista: "+toString(list));
-console.log("Valor de la pos 0: "+get(list, 0));
-console.log("Index del elem 5: "+indexOf(list, 5));
-console.log("Capacidad: "+capacity());
-console.log("Limpiamos lista.");
-clear(list);
-console.log("¿Lista vacia? "+isEmpty(list));
-console.log("Añadimos un 2. Tamaño: "+add(list, 2));
-console.log("Añadimos un 8. Tamaño: "+add(list, 8));
-console.log("Añadimos un 3. Tamaño: "+add(list, 3));
-console.log("Añadimos un 1. Tamaño: "+add(list, 1));
-console.log("Primer elemento: "+firstElement(list));
-console.log("Ultimo elemento: "+lastElement(list));
-console.log("Borramos el index 0. Elemento: "+remove(list, 0));
-console.log("Lista: "+toString(list));
-console.log("Borramos el elem 6. Elemento: "+removeElement(list, 6));
-console.log("Lista: "+toString(list));
-*/
+function testConsole(){
+    console.log("Capacidad: "+capacity(list));
+    console.log("Numero de elementos: "+size(list));
+    console.log("¿Lista vacia? "+isEmpty(list));
+    console.log("¿Lista llena? "+isFull(list));
+    console.log("Añadimos un 3. Tamaño: "+add(list, 3));
+    console.log("¿Lista vacia? "+isEmpty(list));
+    console.log("Añadimos un 1. Tamaño: "+add(list, 1));
+    console.log("Lista: "+toString(list));
+    console.log("Valor de la pos 0: "+get(list, 0));
+    console.log("Index del elem 3: "+indexOf(list, 3));
+    console.log("Limpiamos lista.");
+    clear(list);
+    console.log("¿Lista vacia? "+isEmpty(list));
+    console.log("Añadimos un 8. Tamaño: "+add(list, 8));
+    console.log("Añadimos un 1. Tamaño: "+add(list, 1));
+    console.log("Añadimos un 4. Tamaño: "+add(list, 4));
+    console.log("Añadimos un 2. Tamaño: "+add(list, 2));
+    console.log("Lista: "+toString(list));
+    console.log("Primer elemento: "+firstElement(list));
+    console.log("Ultimo elemento: "+lastElement(list));
+    console.log("Borramos el index 1. Elemento: "+remove(list, 1));
+    console.log("Lista: "+toString(list));
+    console.log("Borramos el elem 6. ¿Borrado?: "+removeElement(list, 6));
+    console.log("Lista: "+toString(list));
+}
+
+//var list = create();
+//testConsole();

@@ -4,11 +4,17 @@
 }
 
 form{
-	width: 60%;
+	width: 100%;
+}
+
+input{
+	padding: 0.5rem;
+	margin-left: 0.5rem;
 }
 
 #statusList{
 	margin: 0.5rem;
+	padding: 0.5rem;
 	border: 1px solid orange;
 	width: 80%;
 	background-color: #3675B7;
@@ -21,6 +27,10 @@ form{
 	font-size: 1.1rem;
 }
 
+#actions{
+	color: #DCDCDC;
+}
+
 .title{
 	font-size: 1.5rem;
 	font-weight: bold;
@@ -28,6 +38,7 @@ form{
 
 #elementFunc{
 	margin: 0.5rem;
+	padding: 0.5rem;
 	border: 1px solid orange;
 	width: 80%;
 	background-color: #4A70A7;
@@ -41,6 +52,7 @@ form{
 
 #indexFunc{
 	margin: 0.5rem;
+	padding: 0.5rem;
 	border: 1px solid orange;
 	width: 80%;
 	background-color: #4A70A7;

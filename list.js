@@ -1,11 +1,9 @@
 "use strict";
 
-var elementMax = 4;
-
 function create(){
     var list = [];
     
-    for (var i=0; i<elementMax; i++){
+    for (var i=0; i < capacity(); i++){
         list[i] = Number.NaN;
     }
     
@@ -23,7 +21,7 @@ function isEmpty(list){
 
 function isFull(list){   
     
-    if (!isNaN(list[elementMax-1])){
+    if (!isNaN(list[capacity()-1])){
         return true;
     }else{
         return false;
@@ -34,7 +32,7 @@ function size (list){
     var numElement = 0;
     var i = 0;
 
-    while(!isNaN(list[i]) && i<elementMax){
+    while(!isNaN(list[i]) && i < capacity()){
         i++;
         numElement++;
     }
@@ -61,7 +59,6 @@ function add (list, elem){
 }
 
 function addAt (list, elem, index){
-    var aux;
     var i;
     
     if (isNaN(elem)){
@@ -72,7 +69,7 @@ function addAt (list, elem, index){
         return "Error. The list is full."; 
     }
     
-    if ( index < 0 || index > elementMax){
+    if ( index < 0 || index > capacity()){
         return "The index is out of the limits of the list";
     }
     
@@ -81,23 +78,23 @@ function addAt (list, elem, index){
             return "Error. The list has empty indexes before.";
         }
     }
+            
+    i = size(list);
     
-    i = index;
-            
     do{
-        aux = list[i];
-        list[i] = elem;
-        list[i+1] = aux;
-        i++;
+        list[i] = list[i-1]
+        i--;
             
-    }while( i<elementMax && !isNaN(list[i+1]))   
+    }while( i > index )  
+    
+    list[index] = elem;
     
     return size(list);                   
 }
 
 function get (list, index){
     
-    if ( index < 0 || index > elementMax){
+    if ( index < 0 || index > capacity()){
         return "The index is out of the limits of the list";
     }
     
@@ -151,13 +148,13 @@ function lastIndexOf(list, elem){
     return -1;
 }
 
-function capacity (list){
-    return elementMax;
+function capacity (){
+    return 4;
 }
 
 function clear (list){
     
-    for (var i=0; i<elementMax; i++){
+    for (var i=0; i<capacity(); i++){
         list[i] = Number.NaN;
     }
 }
@@ -165,7 +162,7 @@ function clear (list){
 function firstElement(list){
     
     if (isEmpty(list)){
-        return "Error. The stack is empty."
+        return "Error. The list is empty."
     }
     
     return list[0];
@@ -174,7 +171,7 @@ function firstElement(list){
 function lastElement(list){
     
     if (isEmpty(list)){
-        return "Error. The stack is empty."
+        return "Error. The list is empty."
     }
     
     return list[size(list)-1];
@@ -194,9 +191,10 @@ function remove (list, index){
     
     aux = list[index];
     
-    while ( !isNaN(list[i]) && i < size(list) ){
-         list[i] = list[i+1]; 
+    while ( i < size(list) ){
+         list[i] = list[i+1];
          i++;
+        
     }
     list[i-1] = Number.NaN;
     
@@ -212,7 +210,7 @@ function removeElement(list, elem){
     }
     
     if (isEmpty(list)){
-        return "Error. The stack is empty."
+        return "Error. The list is empty."
     }
     
     index = indexOf(list, elem);
@@ -239,7 +237,7 @@ function set(list, elem, index){
         return "Error. The element is not a number."
     }
     
-    if ( index < 0 || index > elementMax){
+    if ( index < 0 || index > capacity()){
         return "The index is out of the limits of the list";
     }
     
@@ -249,51 +247,44 @@ function set(list, elem, index){
     return aux;
 }
  
-
-
-function mostrar(list){
-    for (var i=0; i<list.length; i++){
-        console.log("Posicion "+i+" "+list[i]);
-    }
+function testConsole(){
+    console.log("Capacidad: "+capacity(list));
+    console.log("Numero de elementos: "+size(list));
+    console.log("¿Lista vacia? "+isEmpty(list));
+    console.log("¿Lista llena? "+isFull(list));
+    console.log("Añadimos un 5. Tamaño: "+add(list, 5));
+    console.log("¿Lista vacia? "+isEmpty(list));
+    console.log("Añadimos un 8. Tamaño: "+add(list, 8));
+    console.log("Lista: "+toString(list));
+    console.log("Añadimos un 2 en el index 1. Tamaño: "+addAt(list, 2, 1));
+    console.log("Lista: "+toString(list));
+    console.log("Valor de la pos 0: "+get(list, 0));
+    console.log("Index del elem 5: "+indexOf(list, 5));
+    console.log("Index del elem 5 empezando por final: "+lastIndexOf(list, 5));
+    console.log("Capacidad: "+capacity());
+    console.log("Limpiamos lista.");
+    clear(list);
+    console.log("¿Lista vacia? "+isEmpty(list));
+    console.log("Añadimos un 2. Tamaño: "+add(list, 2));
+    console.log("Añadimos un 4. Tamaño: "+add(list, 4));
+    console.log("Lista: "+toString(list));
+    console.log("Añadimos un 6 en el index 1. Tamaño: "+addAt(list, 6, 1));
+    console.log("Lista: "+toString(list));
+    console.log("Añadimos un 9 en el index 0. Tamaño: "+addAt(list, 9, 0));
+    console.log("Lista: "+toString(list));
+    console.log("Primer elemento: "+firstElement(list));
+    console.log("Ultimo elemento: "+lastElement(list));
+    console.log("Borramos el index 1. Elemento: "+remove(list, 1));
+    console.log("Lista: "+toString(list));
+    console.log("Borramos el elem 6. ¿Borrado?: "+removeElement(list, 6));
+    console.log("Lista: "+toString(list));
+    console.log("Cambiamos el valor del indice 1 por 9: "+set(list, 9, 1));
+    console.log("Lista: "+toString(list));
 }
 
 var list = create();
 
-console.log("Capacidad: "+capacity(list));
-console.log("¿Lista vacia? "+isEmpty(list));
-console.log("¿Lista llena? "+isFull(list));
-console.log("Numero de elementos: "+size(list));
-console.log("Añadimos 1: "+add(list, 1));
-//console.log("Añadimos 2: "+addAt(list, 2, 0));
-console.log("Añadimos 2: "+add(list, 2));
-console.log("Añadimos 3: "+add(list, 3));
-console.log("Añadimos 4: "+add(list, 4));
-console.log("Numero de elementos: "+size(list));
-console.log("Añadimos 5: "+add(list, 5));
-console.log("Cadena: "+toString(list));
-mostrar(list);
-//console.log(remove(list, 1));
-console.log(removeElement(list, 2));
-//console.log(remove(list, 0));
-mostrar(list);
-/*console.log("Buscar 6: "+indexOf(list, 3));
-console.log("Buscar 6 por fnal: "+lastIndexOf(list, 2));
-//clear(list);
-//console.log("¿Lista vacia? "+isEmpty(list));
-console.log("Primer elem: "+firstElement(list));
-console.log("Ultimo elem: "+lastElement(list));
-console.log("Borramos 6: "+remove(list, 1));
-console.log("Cadena: "+toString(list));
-//console.log("Borramos 3: "+removeElement(list, 2));
-//console.log("Cadena: "+toString(list));
-console.log("Cambiamos 3 por 6: "+set(list, 3, 0));
-console.log("Cadena: "+toString(list));*/
+//testConsole();
 
 
 
-
-//push(pila, 8);
-//console.log(pop(pila));
-//console.log("Ultimo elemento: "+peek(pila));
-//console.log("Numero de elementos: "+size(pila));
-//mostrar(list);
