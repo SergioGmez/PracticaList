@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Order List</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="orderList.js"></script> 
+</head>
+<body>
+    <form>
+        <div id="statusList">
+            <label class="title">Status List</label>
+            <label id="capacity">Capacity: </label>
+            <label id="status">Status List: </label>
+            <label id="list" >Elements: </label> 
+            <label id="actions">Acciones Realizadas</label>
+        </div>
+        <div id="elementFunc">
+            <label class="title">Element Functions</label>
+            <input type="text" id="textElement">
+            <input type="button" value="Add Element" onclick="elementsFunc(1)">
+            <input type="button" value="Search Element" onclick="elementsFunc(2)">
+            <input type="button" value="Remove Element" onclick="elementsFunc(3)">
+            <input type="button" value="First Element" onclick="elementsFunc(4)">
+            <input type="button" value="Last Element" onclick="elementsFunc(5)">
+            <input type="button" value="Clear List" onclick="elementsFunc(6)">
+        </div>
+        <div id="indexFunc">
+            <label class="title">Indexes Functions</label>
+            <input type="text" id="textIndex">
+            <input type="button" value="Get Index" onclick="indexesFunc(1)">
+            <input type="button" value="Remove Index" onclick="indexesFunc(2, list)">
+        </div>
+    </form>
+    <script>
+        function statusList(){
+            var status;
+            
+            status = "The list has "+size(list)+" elements";
+            
+            if (isEmpty(list)){
+                status = "The list is empty";
+            }
+            
+            if (isFull(list)){
+                status = "The list is full";
+            }
+            
+            document.getElementById("capacity").innerHTML = "Capacity: "+capacity(list);
+            document.getElementById("status").innerHTML = status;
+            document.getElementById("list").innerHTML = "Elements: "+toString(list);
+        }
+        
+        function elementsFunc(type){
+            var element = document.getElementById("textElement").value;
+            
+            switch(type){
+                case 1:
+                    document.getElementById("actions").innerHTML = "Element added. Tamaño: "+add(list, element);
+                    break;
+                case 2:
+                    document.getElementById("actions").innerHTML = "Element found in the index "+indexOf(list, element);
+                    break;
+                case 3:
+                    document.getElementById("actions").innerHTML = "Element removed: "+removeElement(list, element);
+                    break;
+                case 4:
+                    document.getElementById("actions").innerHTML = "The first element is "+firstElement(list);
+                    break;
+                case 5:
+                    document.getElementById("actions").innerHTML = "The last element is "+lastElement(list);
+                    break;
+                case 6:
+                    document.getElementById("actions").innerHTML = "List clear "+clear(list);
+                    break;    
+            }
+            statusList();
+        }
+        
+        function indexesFunc(type){
+            var index = document.getElementById("textIndex").value;
+            
+            switch(type){
+                case 1:
+                    document.getElementById("actions").innerHTML = "Element of index "+index+": "+get(list, index);;
+                    break;
+                case 2:
+                    remove(list, index);
+                    document.getElementById("actions").innerHTML ="Index removed: "+index;
+                    break;
+            }        
+            statusList();
+        }
+        
+        var list = create();
+        
+    </script>
+</body>
+</html>

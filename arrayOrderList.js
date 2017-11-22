@@ -41,7 +41,7 @@ function add (list, elem){
     
     list.push(elem);
     
-    return list.sort ();   
+    return list.sort();   
 }
 
 function get (list, index){
@@ -135,6 +135,8 @@ function removeElement(list, elem){
 
 
 function testConsole(){
+    var list = create();
+    
     console.log("Capacidad: "+capacity(list));
     console.log("Numero de elementos: "+size(list));
     console.log("¿Lista vacia? "+isEmpty(list));
@@ -161,5 +163,4 @@ function testConsole(){
     console.log("Lista: "+toString(list));
 }
 
-//var list = create();
 //testConsole();

@@ -201,6 +201,8 @@ function order(list){
 }
 
 function testConsole(){
+    var list = create();
+    
     console.log("Capacidad: "+capacity(list));
     console.log("Numero de elementos: "+size(list));
     console.log("¿Lista vacia? "+isEmpty(list));
@@ -227,6 +229,4 @@ function testConsole(){
     console.log("Lista: "+toString(list));
 }
 
-var list = create();
-
-testConsole();
+//testConsole();
